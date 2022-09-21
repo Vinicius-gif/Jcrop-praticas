@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">   
+    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="dist/jcrop.css">
+    <script src="dist/jcrop.js"></script>
+    <title>teste jcrop-ativo</title>
+</head>
+<body>
+    <header>
+        <div class="caixa">
+            <nav>
+                <ul>
+                    <li><a href="jcrop-botao.html">Home</a></li>
+                    <li><a href="upload.html">Upload</a></li>
+                    <li><a href="form.html">Formulário</a></li>
+                    <li><a href="classes.html">Classes</a></li>
+                    <li><a href="teste.html">Teste</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div>
+            <h1>Teste de instancias Jcrop</h1>
+            <img src="img/space1.png" id="alvo" width="600" height="300">
+        </div>
+    
+        <div>
+            <img src="img/espaco.jpg" id="target">
+        </div>
+    </main>
+
+    <script>
+        var jcp;
+            Jcrop.load('alvo').then(img => {
+                jcp = Jcrop.attach(img, { multi: true});           
+                const rect = Jcrop.Rect.sizeOf(jcp.el);
+                jcp.newWidget(rect.scale(.4, .9).center(rect.w, rect.h));
+                jcp.focus();               
+            });
+
+        class SvgWidget extends Jcrop.Widget {
+        init () {
+            super.init();
+            const img = new Image();
+            img.src = 'https://d3o1694hluedf9.cloudfront.net/img/js.svg';
+            this.el.appendChild(img);
+        }
+        }
+
+        Jcrop.attach('target',{
+        shadeOpacity: 0.4,
+        aspectRatio: 1,
+        widgetConstructor: SvgWidget
+        });
+
+
+
+       // jcrop.addClass('jcrop-ux-fade-more');
+      // jcrop.addClass('jcrop-ux-inactive-handles');
+        // jcrop.addClass('jcrop-ux-no-outline');
+       // jcrop.addClass('jcrop-ux-keep-current');
+    </script>
+</body>
+</html>

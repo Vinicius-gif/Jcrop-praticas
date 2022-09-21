@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="dist/jcrop.css">
+    <link rel="stylesheet" href="css/style.css">   
+    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+    <script src="dist/jcrop.js"></script>
+    <title>Projeto | Jcrop</title>
+</head>
+
+<body>
+    <header>
+        <div class="caixa">
+            <nav>
+                <ul>
+                    <li><a href="jcrop-botao.html">Home</a></li>
+                    <li><a href="upload.html">Upload</a></li>
+                    <li><a href="form.html">Formulário</a></li>
+                    <li><a href="classes.html">Classes</a></li>
+                    <li><a href="teste.html">Teste</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div>
+            <img id="target" src="https://d3o1694hluedf9.cloudfront.net/market-750.jpg">
+            
+            <section class="btn_market">
+                <div>
+                    <button onclick="jcp.setOptions({shade: true});">Sheade on</button>
+                    <button onclick="jcp.setOptions({shade: false});">Shade off</button>
+                </div>
+            
+                <div style="margin-top:0.5em;">
+                    <button onclick="setImage('market-750.jpg')">Market</button>
+                    <button onclick="setImage('sierra-750.jpg')">Sierra</button>
+                </div>
+            
+                <div>
+                    <button onclick="jcp.setOptions({shadeColor:'#ADD8E6'});">Light Blue</button>
+                    <button onclick="jcp.setOptions({shadeColor:'Blue'});">Blue</button>
+                    <button onclick="jcp.setOptions({shadeColor:'Purple'});">Purple</button>
+                </div>
+            
+                <div>
+                    <button onclick="jcp.setOptions({multi: true});">Multi Crops</button>
+                    <button onclick="jcp.setOptions({multi: false});">Uinico Crop</button>
+                </div>
+            </section>
+    
+        </div>
+    
+        <div>
+            <img id="espaco" src="img/space1.png" width="600" height="300" >
+
+            <section class="btn_space">
+                <button onclick="jcp2.setOptions({shadeColor: '#ADD8E6'});">Cor Original</button>
+                <button onclick="jcp2.setOptions({shadeColor: 'purple'});">Roxo</button>
+                <button onclick="jcp2.setOptions({shadeColor: 'grey'});">Cinza</button>
+        
+                <div>
+                    <button onclick="jcp2.setOptions({aspectRatio: 3/6 });">Aspecto de imagem 3:6</button>
+                    <button onclick="jcp2.setOptions({aspectRatio: 0});">Aspecto normal</button>
+                </div>
+        
+                <div>
+                    <button onclick="jcp2.setOptions({multi: true});">Multi: true</button>
+                    <button onclick="jcp2.setOptions({canRemove: false});">Remoção desativada</button>
+                    <button onclick="jcp2.setOptions({canRemove: true});">Remção ativada</button>
+                </div>
+            </div>
+            </section>
+    
+        <script> 
+    
+            var jcp;
+            Jcrop.load('target').then(img => {
+                jcp = Jcrop.attach(img, { multi: true});           
+                const rect = Jcrop.Rect.sizeOf(jcp.el);
+                jcp.newWidget(rect.scale(.7, .5).center(rect.w, rect.h));
+                jcp.focus();
+            });
+    
+            function setImage(tag) {
+                document.getElementById('target').src =
+                    'https://d3o1694hluedf9.cloudfront.net/' + tag;
+            }
+    
+            function anim() {
+                if (!jcp.active) return false;
+                const animtype = document.getElementById('animtype').value;
+                jcp.active.animate(rrect(), null, animtype);
+                jcp.focus();
+            }
+        
+        /* const jcrop = Jcrop.attach('espaco', {
+                shadeColor: '#ADD8E6',
+                multi: true,
+                aspectRatio: 0,
+            }); */
+            
+            var jcp2;
+            Jcrop.load('espaco').then(img => {
+                jcp2 = Jcrop.attach(img, { multi: false, shadeColor: '#ADD8E6'});           
+                const rect = Jcrop.Rect.sizeOf(jcp2.el);
+                jcp2.newWidget(rect.scale(.7, .5).center(rect.w, rect.h));
+                jcp2.focus();
+            });
+        </script>
+    </main>
+    
+    <footer>
+        <h3 class="rodapeh1">Este é o rodapé</h3>
+    </footer>
+</body>
+
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/form.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="dist/jcrop.css">
+    <script src="dist/jcrop.js"></script>
+    <title>Assinaturas do Contrato.</title>
+</head>
+
+<body>
+    <header>
+        <div class="caixa">
+            <nav>
+                <ul>
+                    <li><a href="jcrop-botao.html">Home</a></li>
+                    <li><a href="upload.html">Upload</a></li>
+                    <li><a href="form.html">Formulário</a></li>
+                    <li><a href="classes.html">Classes</a></li>
+                    <li><a href="teste.html">Teste</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div>
+            <h1 class="titulo_principal">Assinaturas do Contrato</h1>
+        </div>
+
+        <div class="contrato">
+            <div>
+                <img src="img/contrato-x.jpeg" id="alvo" width="600" height="400">
+            </div>
+
+            <div>
+                <ul class="coods">
+                    <li>X: <input type="text" readonly="readonly"></li>
+                    <li>Y: <input type="text" readonly="readonly"></li>
+                    <li>W: <input type="text" readonly="readonly"></li>
+                    <li>H: <input type="text" readonly="readonly"></li>
+                    <li><button>x2/y2</button></li>
+                </ul>
+
+            </div>
+
+            <div>
+                <ul>
+                    <li><button id="coord" onclick="mostrarCoord()">Mostrar Coord</button></li>
+                </ul>
+            </div>
+
+            <div>
+                <ul class="lista-pessoas">
+                    <li><button id="joao" onclick="campoJoao()">João</button></li>
+                    <li><button id="maria" onclick="campoMaria()">Maria</button></li>
+                    <li><button id="pedro" onclick="campoPedro()">Pedro</button></li>
+                </ul>
+            </div>
+        </div>
+
+        <div>
+            <img src="img/contrato-x.jpeg" id="target" width="600" height="400">
+            <input type="hidden" name="x" id="x" value="">
+            <input type="hidden" name="y" id="y" value="">
+            <input type="hidden" name="w" id="w" value="">
+            <input type="hidden" name="h" id="h" value="">
+            <button type="submit">Crop</button>
+        </div>
+
+        <script>
+            /* $(document).ready(function(){
+                    
+                    Jcrop.attach('target',
+                    {
+                        onselect: function(crop){
+                            console.log(crop);
+    
+                            $("#x").val(crop.x);
+                            $("#y").val(crop.y);
+                            $("#w").val(crop.w);
+                            $("#h").val(crop.h);
+                        }
+                    });
+                }) */
+
+            /* const stage = Jcrop.attach('alvo');
+
+            stage.listen('crop.move',(widget,e) => {
+            console.log(widget.pos);
+            }); */
+
+            var jcp;
+            Jcrop.load('alvo').then(img => {
+                jcp = Jcrop.attach(img, { multi: true });
+                const rt = Jcrop.Rect.sizeOf(jcp.el);
+                jcp.newWidget(rt.scale(.6, .4).center(rt.w, rt.h));
+                jcp.focus();
+            });
+
+            function mostrarCoord() {
+                jcp.listen('crop.change', (widget, e) => {
+                    console.log(widget.pos);
+                });
+            }
+
+            function campoJoao() {
+                const rect = Jcrop.Rect.create(130, 350, 360, 110);
+                jcp.newWidget(rect);
+            }
+
+            function campoMaria() {
+                const rect = Jcrop.Rect.create(130, 500, 360, 110);
+                jcp.newWidget(rect);
+            }
+
+            function campoPedro() {
+                const rect = Jcrop.Rect.create(580, 500, 360, 110);
+                jcp.newWidget(rect);
+            }
+        </script>
+    </main>
+</body>
+
+</html>

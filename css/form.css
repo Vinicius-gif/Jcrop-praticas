@@ -1,0 +1,80 @@
+body {
+	font-family: 'Montserrat', sans-serif;
+}
+
+header {
+	background: #BBBBBB;
+	padding: 20px 0;
+}
+
+.caixa {
+	position: relative;
+	width: 940px;
+	margin: 0 auto;
+}
+
+nav li {
+	display: inline;
+	margin: 0 0 0 15px;
+}
+
+nav a {
+	text-transform: uppercase;
+	color: #000000;
+	font-weight: bold;
+	font-size: 22px;
+	text-decoration: none;
+}
+
+nav a:hover {
+	color: #C78C19;
+	text-decoration: underline;
+}
+
+.titulo_principal {
+    padding: 20px;
+    font-weight: bold;
+    font-size: 30px;
+	color: palevioletred;
+}
+
+#joao, #maria, #pedro, #coord {
+	width: 150px;
+	height: 40px;
+	border: 0;
+	border-radius: 10px;
+	cursor: pointer;
+	color: white;
+	font-weight: bold;
+}
+
+#coord { background-color: black;}
+#joao { background-color: darkorange;}
+#maria { background-color: darkred;}
+#pedro { background-color: darkgreen;}
+
+.lista-pessoas {
+	padding: 20px;
+	font-size: 30px;
+	font-weight: bold;
+	display: flex;
+	align-items: center;
+    justify-content: center; 
+	color: black;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 100px;
+    width: 100%;
+    background-color: green;
+}
+
+.rodapeh1 {
+    text-align: center;
+    font-size: 30px;
+    font-weight: bolder;
+    color: black;
+}

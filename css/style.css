@@ -1,0 +1,58 @@
+body {
+	font-family: 'Montserrat', sans-serif;
+	
+}
+
+header {
+	background:#3f3b3b;
+	padding: 20px 0;
+}
+
+.caixa {
+	position: relative;
+	width: 940px;
+	margin: 0 auto;
+}
+
+nav li {
+	display: inline;
+	margin: 0 0 0 15px;
+}
+
+nav a {
+	text-transform: uppercase;
+	color: #e9c0c0;
+	font-weight: bold;
+	font-size: 22px;
+	text-decoration: none;
+}
+
+nav a:hover {
+	color: #C78C19;
+	text-decoration: underline;
+}
+
+main {
+	background-color: slategray;
+}
+
+.btn_market {
+	margin: 10px;
+}
+
+.btn_space {
+	padding: 10px;
+}
+
+footer {
+    height: 100px;
+    width: 100%;
+    background-color: green;
+}
+
+.rodapeh1 {
+	text-align: center;
+    font-size: 30px;
+    font-weight: bolder;
+    color: black;
+}
