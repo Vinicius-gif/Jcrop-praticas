@@ -39,7 +39,7 @@
 
             <div>
                 <ul class="coods">
-                    <li>X: <input type="text" readonly="readonly"></li>
+                    <li>X: <input type="text" readonly="readonly" name="x" id="x" value=""></li>
                     <li>Y: <input type="text" readonly="readonly"></li>
                     <li>W: <input type="text" readonly="readonly"></li>
                     <li>H: <input type="text" readonly="readonly"></li>
@@ -59,10 +59,10 @@
                     <li><button id="joao" onclick="campoJoao()">João</button></li>
                     <li><button id="maria" onclick="campoMaria()">Maria</button></li>
                     <li><button id="pedro" onclick="campoPedro()">Pedro</button></li>
+                    <li><button id="" onclick="campoTeste()">Teste</button></li>
                 </ul>
             </div>
         </div>
-
         <div>
             <img src="img/contrato-x.jpeg" id="target" width="600" height="400">
             <input type="hidden" name="x" id="x" value="">
@@ -72,6 +72,8 @@
             <button type="submit">Crop</button>
         </div>
 
+        <div id="container" width="600" height="400">
+        </div>
         <script>
             /* $(document).ready(function(){
                     
@@ -96,21 +98,23 @@
 
             var jcp;
             Jcrop.load('alvo').then(img => {
-                jcp = Jcrop.attach(img, { multi: true });
+                jcp = Jcrop.attach(img, { multi: false, canRemove: false });
                 const rt = Jcrop.Rect.sizeOf(jcp.el);
                 jcp.newWidget(rt.scale(.6, .4).center(rt.w, rt.h));
-                jcp.focus();
+                jcp.focus();               
             });
 
             function mostrarCoord() {
                 jcp.listen('crop.change', (widget, e) => {
-                    console.log(widget.pos);
+                    console.log(widget.pos)
                 });
             }
 
             function campoJoao() {
                 const rect = Jcrop.Rect.create(130, 350, 360, 110);
                 jcp.newWidget(rect);
+                jcp.addClass('jcrop-ux-keep-current');
+                jcp.addClass('jcrop-ux-inactive-handles');
             }
 
             function campoMaria() {
@@ -122,6 +126,27 @@
                 const rect = Jcrop.Rect.create(580, 500, 360, 110);
                 jcp.newWidget(rect);
             }
+
+            function campoTeste() {                              
+                const point = [110,110];
+                const rect = Jcrop.Rect.fromPoint(point,200,300,'br');
+                jcp.newWidget(rect);
+            }
+
+            const stage = Jcrop.attach('target');
+            stage.listen('crop.update',function(widget,e){
+            const pos = widget.pos;
+            console.log(pos.x,pos.y,pos.w,pos.h);
+            });
+
+            var jcp3;
+            const myImage = new Image();
+            myImage.src = 'https://s1.static.brasilescola.uol.com.br/be/2021/11/planeta-marte.jpg';
+            document.getElementById('container').appendChild(myImage);
+            Jcrop.load(myImage).then(img =>{
+                jcp3 = Jcrop.attach(img, {shadeColor: 'pink'})
+            });
+
         </script>
     </main>
 </body>
