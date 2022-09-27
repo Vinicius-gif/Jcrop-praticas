@@ -38,7 +38,7 @@ nav a:hover {
 	color: palevioletred;
 }
 
-#joao, #maria, #pedro, #coord {
+#joao, #maria, #pedro, #coord, #teste, #espaco1, #espaco2, #espaco3, #evento-update, #evento-remove, #evento-change, #evento-activate {
 	width: 150px;
 	height: 40px;
 	border: 0;
@@ -52,6 +52,22 @@ nav a:hover {
 #joao { background-color: darkorange;}
 #maria { background-color: darkred;}
 #pedro { background-color: darkgreen;}
+#teste	{ background-color: fuchsia;}
+
+.crop_espaco {
+	padding-left: 20px;
+	padding-top: 20px;
+	padding-bottom: 40px;
+}
+
+#espaco1 { background-color: cadetblue;}
+#espaco2 { background-color: chocolate;}
+#espaco3 { background-color: darkolivegreen;}
+
+#evento-update, #evento-remove, #evento-change, #evento-activate {
+	background-color: lightskyblue;
+	color: black;
+}
 
 .lista-pessoas {
 	padding: 20px;
