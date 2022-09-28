@@ -60,10 +60,20 @@ function setImage(tag) {
     document.getElementById('target').src = 'img/' + tag;
 }
 
-const stage = Jcrop.attach('target', { multi: true });
+/* const stage = Jcrop.attach('target', { multi: true });
+
 stage.listen('crop.remove', function (widget, e) {
     const pos = widget.pos;
     console.log(pos.x, pos.y, pos.w, pos.h);
+}); */
+
+var stage;
+Jcrop.load('target').then(img => {
+    stage = Jcrop.attach(img, { multi: true });
+    stage.listen('crop.remove', function (widget, e) {
+        const pos = widget.pos;
+        console.log(pos.x, pos.y, pos.w, pos.h);
+    });
 });
 
 function eventoUpdate() {
