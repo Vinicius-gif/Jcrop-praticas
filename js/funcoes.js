@@ -1,90 +1,62 @@
-/* document.ready(function(){
-                    
-                    Jcrop.attach('target',
-                    {
-                        onselect: function(crop){
-                            console.log(crop);
-    
-                            $("#x").val(crop.x);
-                            $("#y").val(crop.y);
-                            $("#w").val(crop.w);
-                            $("#h").val(crop.h);
-                        }
-                    });
-                }) */
-
-/* const stage = Jcrop.attach('alvo');
-
-stage.listen('crop.move',(widget,e) => {
-console.log(widget.pos);
-}); */
-
 //CROP 1
 
 var jcp;
 Jcrop.load('alvo').then(img => {
     jcp = Jcrop.attach(img, { multi: false, canRemove: false });
-});
 
-function mostrarCoord() {
-    jcp.listen('crop.change', (widget, e) => {
+    const rectJoao = Jcrop.Rect.create(130, 350, 360, 110);
+    jcp.newWidget(rectJoao);
+
+    const rectPedro = Jcrop.Rect.create(130, 500, 360, 110);
+    jcp.newWidget(rectPedro);
+
+    const rectMaria = Jcrop.Rect.create(580, 500, 360, 110);
+    jcp.newWidget(rectMaria);
+
+    jcp.listen('crop.activate', (widget) => {
         console.log(widget.pos)
     });
-}
 
-var clicado = false;
-function campoJoao() {
-    if(!clicado){
-        console.log('ok');
-        clicado = true;
-        const rect = Jcrop.Rect.create(130, 350, 360, 110);
-        jcp.newWidget(rect);
-    }
-}
-
-/* function campoJoao() {
-    const rect = Jcrop.Rect.create(130, 350, 360, 110);
-    jcp.newWidget(rect);
     jcp.addClass('jcrop-ux-keep-current');
-    jcp.addClass('jcrop-ux-inactive-handles');
-} */
+});
 
-var clicado2 = false;
-function campoMaria() {
-    if(!clicado2){
-        console.log('ok 2');
-        clicado2 = true;
-        const rect = Jcrop.Rect.create(130, 500, 360, 110);
-        jcp.newWidget(rect);
-    }
+function campoJoao() {
+    jcp.setOptions({shadeColor: 'pink'})
 }
 
+function campoPedro() {}
+
+function campoMaria() {}
+
+// var clicado = false;
+// function campoJoao() {
+//     if (!clicado) {
+//         console.log('ok');
+//         clicado = true;
+//         const rect = Jcrop.Rect.create(130, 350, 360, 110);
+//         jcp.newWidget(rect);
+//     }
+// }
+
+// var clicado2 = false;
 // function campoMaria() {
-//     const rect = Jcrop.Rect.create(130, 500, 360, 110);
-//     jcp.newWidget(rect);
+//     if (!clicado2) {
+//         console.log('ok 2');
+//         clicado2 = true;
+//         const rect = Jcrop.Rect.create(130, 500, 360, 110);
+//         jcp.newWidget(rect);
+//     }
 // }
 
-var clicado3 = false;
-function campoPedro() {
-    if(!clicado3){
-        console.log('ok 3');
-        clicado3 = true;
-        const rect = Jcrop.Rect.create(580, 500, 360, 110);;
-        jcp.newWidget(rect);
-    }
-}
-
+// var clicado3 = false;
 // function campoPedro() {
-//     const rect = Jcrop.Rect.create(580, 500, 360, 110);
-//     jcp.newWidget(rect);
+//     if (!clicado3) {
+//         console.log('ok 3');
+//         clicado3 = true;
+//         const rect = Jcrop.Rect.create(580, 500, 360, 110);
+//         jcp.newWidget(rect);
+//     }
 // }
-
-// function campoTeste() {
-//     const point = [110, 110];
-//     const rect = Jcrop.Rect.fromPoint(point, 200, 300, 'br');
-//     jcp.newWidget(rect);
-// }
-
 
 //CROP 2
 
