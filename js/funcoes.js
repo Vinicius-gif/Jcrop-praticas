@@ -4,14 +4,14 @@ var jcp;
 Jcrop.load('alvo').then(img => {
     jcp = Jcrop.attach(img, { multi: false, canRemove: false });
 
-    const rectJoao = Jcrop.Rect.create(130, 350, 360, 110);
-    jcp.newWidget(rectJoao);
+    arrayCampos[0].id = Jcrop.Rect.create(130, 350, 360, 110);
+    jcp.newWidget(arrayCampos[0].id);
 
-    const rectPedro = Jcrop.Rect.create(130, 500, 360, 110);
-    jcp.newWidget(rectPedro);
+    arrayCampos[1].id = Jcrop.Rect.create(130, 500, 360, 110);
+    jcp.newWidget(arrayCampos[1].id);
 
-    const rectMaria = Jcrop.Rect.create(580, 500, 360, 110);
-    jcp.newWidget(rectMaria);
+    arrayCampos[2].id = Jcrop.Rect.create(580, 500, 360, 110);
+    jcp.newWidget(arrayCampos[2].id);
 
     jcp.listen('crop.activate', (widget) => {
         console.log(widget.pos)
@@ -20,13 +20,41 @@ Jcrop.load('alvo').then(img => {
     jcp.addClass('jcrop-ux-keep-current');
 });
 
-function campoJoao() {
-    jcp.setOptions({shadeColor: 'pink'})
+var arrayCampos = Array(3)
+
+arrayCampos[0] = new Object();
+arrayCampos[0].id = null;
+arrayCampos[0].nome = "campo-joao";
+arrayCampos[0].x = 130;
+arrayCampos[0].y = 350;
+arrayCampos[0].w = 360;
+arrayCampos[0].h = 110;
+
+arrayCampos[1] = new Object();
+arrayCampos[1].id = null;
+arrayCampos[1].nome = "campo-pedro";
+arrayCampos[1].x = 130;
+arrayCampos[1].y = 500;
+arrayCampos[1].w = 360;
+arrayCampos[1].h = 110;
+
+arrayCampos[2] = new Object();
+arrayCampos[2].id = null;
+arrayCampos[2].nome = "campo-maria";
+arrayCampos[2].x = 580;
+arrayCampos[2].y = 500;
+arrayCampos[2].w = 360;
+arrayCampos[2].h = 110;
+
+console.log(arrayCampos);
+
+function ativarPosicao(pUsuario) {
+//jcp.newCropper(arrayCampos[pUsuario].id,{ aspectRatio: arrayCampos[pUsuario].id.aspect });
+
+console.log(jcp.active.pos);
+
+//jcp.active = arrayCampos[pUsuario].id;
 }
-
-function campoPedro() {}
-
-function campoMaria() {}
 
 // var clicado = false;
 // function campoJoao() {
