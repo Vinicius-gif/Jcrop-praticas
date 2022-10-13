@@ -38,14 +38,6 @@
     </main>
 
     <script>
-        var jcp;
-            Jcrop.load('alvo').then(img => {
-                jcp = Jcrop.attach(img, { multi: true});           
-                const rect = Jcrop.Rect.sizeOf(jcp.el);
-                jcp.newWidget(rect.scale(.4, .9).center(rect.w, rect.h));
-                jcp.focus();               
-            });
-
         class SvgWidget extends Jcrop.Widget {
         init () {
             super.init();
