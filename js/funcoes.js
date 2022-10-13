@@ -1,6 +1,6 @@
 //CROP 1
 var jcp;
-var arrayCampos = Array(3);
+var arrayCampos = [];
 
 arrayCampos[0] = new Object();
 arrayCampos[0].widget = null;
@@ -26,6 +26,14 @@ arrayCampos[2].y = 500;
 arrayCampos[2].w = 360;
 arrayCampos[2].h = 110;
 
+// arrayCampos[3] = new Object();
+// arrayCampos[3].widget = null;
+// arrayCampos[3].nome = "campo-padrao";
+// arrayCampos[3].x = 380;
+// arrayCampos[3].y = 300;
+// arrayCampos[3].w = 360;
+// arrayCampos[3].h = 110;
+
 Jcrop.load('alvo').then(img => {
     jcp = Jcrop.attach(img, { multi: false, canRemove: false });
 
@@ -36,7 +44,7 @@ Jcrop.load('alvo').then(img => {
     arrayCampos[2].widget = jcp.newWidget(Jcrop.Rect.create(arrayCampos[2].x, arrayCampos[2].y, arrayCampos[2].w, arrayCampos[2].h));
 
     jcp.listen('crop.activate', (widget) => {
-        console.log(widget.pos)
+        //console.log(widget.pos)
     });
 
     jcp.addClass('jcrop-ux-keep-current');
@@ -50,8 +58,16 @@ function ativarPosicao(pUsuario) {
 
 function newUsuario() {
 
-    arrayCampos[0].widget = jcp.newWidget(Jcrop.Rect.create(arrayCampos[0].x, arrayCampos[0].y, arrayCampos[0].w, arrayCampos[0].h));
+    for (let i = 2; i < arrayCampos.length; i++) {
 
+        arrayCampos[i].widget = jcp.newWidget(Jcrop.Rect.create(380, 100, 360, 110));
+        
+        arrayCampos.push(arrayCampos[i].widget);
+
+        console.log(arrayCampos);
+
+        return;
+    } 
 }
 
 //CROP 2
