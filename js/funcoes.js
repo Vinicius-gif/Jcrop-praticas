@@ -2,49 +2,17 @@
 var jcp;
 var arrayCampos = [];
 
-arrayCampos[0] = new Object();
-arrayCampos[0].widget = null;
-arrayCampos[0].nome = "campo-joao";
-arrayCampos[0].x = 130;
-arrayCampos[0].y = 350;
-arrayCampos[0].w = 360;
-arrayCampos[0].h = 110;
-
-arrayCampos[1] = new Object();
-arrayCampos[1].widget = null;
-arrayCampos[1].nome = "campo-pedro";
-arrayCampos[1].x = 130;
-arrayCampos[1].y = 500;
-arrayCampos[1].w = 360;
-arrayCampos[1].h = 110;
-
-arrayCampos[2] = new Object();
-arrayCampos[2].widget = null;
-arrayCampos[2].nome = "campo-maria";
-arrayCampos[2].x = 580;
-arrayCampos[2].y = 500;
-arrayCampos[2].w = 360;
-arrayCampos[2].h = 110;
-
-// arrayCampos[3] = new Object();
-// arrayCampos[3].widget = null;
-// arrayCampos[3].nome = "campo-padrao";
-// arrayCampos[3].x = 380;
-// arrayCampos[3].y = 300;
-// arrayCampos[3].w = 360;
-// arrayCampos[3].h = 110;
-
 Jcrop.load('alvo').then(img => {
     jcp = Jcrop.attach(img, { multi: false, canRemove: false });
 
-    arrayCampos[0].widget = jcp.newWidget(Jcrop.Rect.create(arrayCampos[0].x, arrayCampos[0].y, arrayCampos[0].w, arrayCampos[0].h));
+    // arrayCampos.push({ widget: jcp.newWidget(Jcrop.Rect.create(130, 350, 360, 110)), nome: 'joao' });
 
-    arrayCampos[1].widget = jcp.newWidget(Jcrop.Rect.create(arrayCampos[1].x, arrayCampos[1].y, arrayCampos[1].w, arrayCampos[1].h));
+    // arrayCampos.push({ widget: jcp.newWidget(Jcrop.Rect.create(130, 500, 360, 110)), nome: 'pedro' });
 
-    arrayCampos[2].widget = jcp.newWidget(Jcrop.Rect.create(arrayCampos[2].x, arrayCampos[2].y, arrayCampos[2].w, arrayCampos[2].h));
+    // arrayCampos.push({ widget: jcp.newWidget(Jcrop.Rect.create(580, 500, 360, 110)), nome: 'maria' });
 
     jcp.listen('crop.activate', (widget) => {
-        //console.log(widget.pos)
+        console.log(widget.pos)
     });
 
     jcp.addClass('jcrop-ux-keep-current');
@@ -58,16 +26,37 @@ function ativarPosicao(pUsuario) {
 
 function newUsuario() {
 
-    for (let i = 2; i < arrayCampos.length; i++) {
+    var usuario = prompt("Digite o nome do usuário");
 
-        arrayCampos[i].widget = jcp.newWidget(Jcrop.Rect.create(380, 100, 360, 110));
-        
-        arrayCampos.push(arrayCampos[i].widget);
+    arrayCampos.push({ widget: jcp.newWidget(Jcrop.Rect.create(380, 100, 360, 110)), nome: usuario });
 
-        console.log(arrayCampos);
+    var index = arrayCampos.length -1;
 
-        return;
-    } 
+    var lista = document.getElementById("lista-pessoas").innerHTML;
+    lista = lista + "<li><button class = 'lista-usuario' style = 'background-color: rgb("+GetCorRGB()+")' onclick='ativarPosicao("+index+")'>"+usuario+"</button></li>";
+    document.getElementById("lista-pessoas").innerHTML = lista;
+
+    // let btn = document.getElementById(index);
+
+    // btn.addEventListener('click', function() {
+    //     onclick="ativarPosicao("+ index +")"
+    // });
+
+    console.log(usuario);
+}
+
+function GetCorRGB() {
+
+    var lMin = Math.ceil(50);
+    var lMax = Math.floor(255);
+
+    var lRed = Math.floor(Math.random() * (lMax - lMin + 1)) + lMin;
+    var lGreen = Math.floor(Math.random() * (lMax - lMin + 1)) + lMin;
+    var lBlue = Math.floor(Math.random() * (lMax - lMin + 1)) + lMin;
+
+    var lCor = lRed.toString() + "," + lGreen.toString() + "," + lBlue.toString();
+
+    return lCor;
 }
 
 //CROP 2
