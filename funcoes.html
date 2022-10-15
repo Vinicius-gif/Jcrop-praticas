@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="css/form.css">
+    <link rel="stylesheet" href="css/funcoes.css">
     <link rel="stylesheet" href="css/style.css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="dist/jcrop.css">
@@ -16,12 +16,10 @@
     <header>
         <div class="caixa">
             <nav>
-                <ul>
+                <ul class="txt-cabecalho"></ul>
                     <li><a href="main.html">Home</a></li>
                     <li><a href="upload.html">Upload</a></li>
                     <li><a href="funcoes.html">Funções</a></li>
-                    <li><a href="classes.html">Classes</a></li>
-                    <li><a href="teste.html">Testes</a></li>
                 </ul>
             </nav>
         </div>
@@ -37,28 +35,17 @@
 
             <div class="btns-widgets">
                 <ul class="lista-pessoas" id="lista-pessoas">
-                    <li><button id="btn-newuser" onclick="newUsuario()">Adicionar Campo</button></li>
+                    <li><button id="btn-newuser" onclick="newUsuario()">Adicionar Usuário</button></li>
+                    <li><button id="btn-removeuser" onclick="removeUsuario()">Remover Usuário</button></li>
                     <!-- <li><button id="joao" onclick="ativarPosicao(0)">João</button></li>
                     <li><button id="maria" onclick="ativarPosicao(1)">Maria</button></li>
                     <li><button id="pedro" onclick="ativarPosicao(2)">Pedro</button></li> -->
                 </ul>
             </div>
         </div>
-        
-        <div class="crop_espaco">
-            <img src="img/espaco.jpg" id="target" width="600" height="400">
-            <br>
-            <button id="espaco1" onclick="setImage('espaco.jpg')">Espaço 1</button>
-            <button id="espaco2" onclick="setImage('space1.png')">Espaço 2</button>
-            <button id="espaco3" onclick="setImage('space2.jpg')">Espaço 3</button>
-            <br><br>
-            <button id="evento-update" onclick="eventoUpdate()">Evento Update</button>
-            <button id="evento-activate" onclick="eventoActivate()">Evento Activate</button>
-            <button id="evento-change" onclick="eventoChange()">Evento Change</button>
-            <button id="evento-remove" onclick="eventoRemove()">Evento Remove</button>
-        </div>
 
-        <div id="container" width="600" height="400"></div>
+        <img src="img/espaco.jpg">
+        
     </main>
 
     <script src="js/funcoes.js"></script>
