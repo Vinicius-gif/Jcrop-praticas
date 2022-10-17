@@ -30,6 +30,7 @@
 
             <section class="btn_market">
                 <div>
+                    <button style="background-color: red;" onclick="removerWidget()">Remover</button>
                     <button onclick="jcp.setOptions({shade: true});">Sheade on</button>
                     <button onclick="jcp.setOptions({shade: false});">Shade off</button>
                 </div>
@@ -87,6 +88,10 @@
             function setImage(tag) {
                 document.getElementById('target').src =
                     'https://d3o1694hluedf9.cloudfront.net/' + tag;
+            }
+
+            function removerWidget() {
+                jcp.removeWidget(jcp.active);
             }
 
             function anim() {
