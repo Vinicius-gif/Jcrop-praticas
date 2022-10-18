@@ -1,21 +1,9 @@
 //CROP 1
 var jcp;
 var arrayCampos = [];
-var listaUsuarios = [];
 
 Jcrop.load('alvo').then(img => {
-    jcp = Jcrop.attach(img, { multi: false, canRemove: false});
-
-    // arrayCampos.push({ widget: jcp.newWidget(Jcrop.Rect.create(130, 350, 360, 110)), nome: 'joao' });
-
-    // arrayCampos.push({ widget: jcp.newWidget(Jcrop.Rect.create(130, 500, 360, 110)), nome: 'pedro' });
-
-    // arrayCampos.push({ widget: jcp.newWidget(Jcrop.Rect.create(580, 500, 360, 110)), nome: 'maria' });
-
-    jcp.listen('crop.activate', (widget) => {
-        //console.log(widget.pos)
-        //console.log(jcp.active);
-    });
+    jcp = Jcrop.attach(img, { multi: false, canRemove: false });
 
     jcp.addClass('jcrop-ux-keep-current');
 });
@@ -32,68 +20,30 @@ function newUsuario() {
 
     arrayCampos.push({ widget: jcp.newWidget(Jcrop.Rect.create(380, 100, 360, 110)), nome: usuario });
 
-    var index = arrayCampos.length -1;
+    var index = arrayCampos.length - 1;
 
-    listaUsuarios = document.getElementById("lista-pessoas").innerHTML;
-    listaUsuarios = listaUsuarios + "<li><button class = 'lista-usuario' style = 'background-color: rgb("+GetCorRGB()+")' onclick='ativarPosicao("+index+")'>"+usuario+"</button></li>";
-    document.getElementById("lista-pessoas").innerHTML = listaUsuarios;
+    var lista = document.getElementById("lista-pessoas").innerHTML;
+    var lista = lista + "<li class = 'list-btns-users'><button class = 'lista-usuario' style = 'background-color: rgb(" + GetCorRGB() + ")' onclick= 'ativarPosicao(" + index + ")'>" + usuario + "</button> <button id = 'btn-excluir' onclick= 'removeUsuario(" + index + ")'> X </button></li>";
+    document.getElementById("lista-pessoas").innerHTML = lista;
 
-    // let btn = document.getElementById(index);
-
-    // btn.addEventListener('click', function() {
-    //     onclick="ativarPosicao("+ index +")"
-    // });
-
-    //console.log(listaUsuarios);
-    console.log(usuario);
-    console.log(arrayCampos);
 }
 
-function removeUsuario() {
-
-    //console.log(jcp.active.pos);
-
-    /* arrayCampos = arrayCampos.filter((valorAtual, indice) => {
-        //console.log(valorAtual, indice);
-        //return valorAtual.widget.pos;
-        console.log(valorAtual.widget.pos);
-    }); */
+function removeUsuario(pIndex) {
 
     jcp.setOptions({ canRemove: true });
 
-    arrayCampos = arrayCampos.filter((valorAtual => valorAtual.widget.pos != jcp.active.pos));
-
-    //listaUsuarios = listaUsuarios.filter((valorLista => valorLista.widget.pos != jcp.active.pos));
-
-    jcp.removeWidget(jcp.active);
-
-    // var liBtn = document.querySelector("#lista-usuario");
-
-    // var lista = document.querySelector("#lista-pessoas");
-    // lista.removeChild(liBtn);
-
-    jcp.setOptions({ canRemove: false });
-
-    console.log(arrayCampos);
-}
-
-/* function removeUsuario() {
-
-    //console.log(jcp.active);
-
-    //jcp.active.setOptions({ canRemove: true });
-
-    jcp.setOptions({ canRemove: true });
+    var itens = document.querySelector(".list-btns-users");
     
-    //jcp.removeWidget(jcp.active);
-    arrayCampos = arrayCampos.filter(widget => widget == jcp.active);
+    itens.remove(pIndex);
 
-    console.log(arrayCampos);
+    jcp.removeWidget(arrayCampos[pIndex].widget);
+
+    arrayCampos.splice(pIndex, 1);
 
     jcp.setOptions({ canRemove: false });
 
-
-} */
+    console.log(arrayCampos);
+}
 
 function GetCorRGB() {
 

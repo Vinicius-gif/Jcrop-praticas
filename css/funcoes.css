@@ -102,4 +102,12 @@ nav a:hover {
 	color: black;
 }
 
+#btn-excluir {
+	background-color: red;
+	border: none;
+	border-radius: 3px;
+	color: black;
+	margin-right: 15px;
+}
+
 
