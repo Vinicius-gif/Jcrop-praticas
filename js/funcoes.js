@@ -23,7 +23,7 @@ function newUsuario() {
     var index = arrayCampos.length - 1;
 
     var lista = document.getElementById("lista-pessoas").innerHTML;
-    var lista = lista + "<li class = 'list-btns-users'><button class = 'lista-usuario' style = 'background-color: rgb(" + GetCorRGB() + ")' onclick= 'ativarPosicao(" + index + ")'>" + usuario + "</button> <button id = 'btn-excluir' onclick= 'removeUsuario(" + index + ")'> X </button></li>";
+    var lista = lista + "<li class = 'list-btns-users' id = (" + index + ") ><button class = 'lista-usuario' style = 'background-color: rgb(" + GetCorRGB() + ")' onclick= 'ativarPosicao(" + index + ")'>" + usuario + "</button> <button id = 'btn-excluir' onclick= 'removeUsuario(" + index + ")'> X </button></li>";
     document.getElementById("lista-pessoas").innerHTML = lista;
 
 }
@@ -32,9 +32,11 @@ function removeUsuario(pIndex) {
 
     jcp.setOptions({ canRemove: true });
 
-    var itens = document.querySelector(".list-btns-users");
-    
-    itens.remove(pIndex);
+    var item = document.querySelector(".list-btns-users").item(pIndex);
+
+    console.log(item);
+
+    item.remove();
 
     jcp.removeWidget(arrayCampos[pIndex].widget);
 
