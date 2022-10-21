@@ -26,21 +26,28 @@
     </header>
 
     <main>
-            <h1 class="titulo_principal">Assinaturas do Contrato</h1>
 
-        <div class="contrato">
-            <div>
-                <img src="img/contrato-x.jpeg" id="alvo" width="600" height="400">
-            </div>
+        
+        <h1 class="titulo_principal">Assinaturas do Contrato</h1>
 
+        <div style="display:flex">
+            <div class="contrato">
+                <div>
+                    <img src="img/contrato-x.jpeg" id="alvo" width="600" height="400">
+                </div>
+    
+            </div>    
             <div class="btns-widgets">
+                <div>
+                    <button id="btn-newuser" onclick="newUsuario()">Adicionar</button>
+                    <button id="btn-newuser" onclick="editUsuario()">Editar</button>
+                    <button id="btn-newuser" onclick="delUsuario()">Remover</button>
+                </div>
                 <ul class="lista-pessoas" id="lista-pessoas">
-                    <li><button id="btn-newuser" onclick="newUsuario()">Adicionar Usuário</button></li>
+                    <!-- <li><button id="btn-newuser" onclick="newUsuario()">Adicionar Usuário</button></li> -->
                 </ul>
             </div>
         </div>
-
-        <img src="img/espaco.jpg">
         
     </main>
 

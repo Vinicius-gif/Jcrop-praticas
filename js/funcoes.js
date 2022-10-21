@@ -3,6 +3,7 @@ var jcp;
 var numUsuario = 0;
 var arrayCampos = [];
 
+
 Jcrop.load('alvo').then(img => {
     jcp = Jcrop.attach(img, { multi: false, canRemove: false });
 
@@ -14,9 +15,15 @@ Jcrop.load('alvo').then(img => {
 
 });
 
-function ativarPosicao(pUsuario) {
+function ativarPosicao(pID) {
 
-    jcp.activate(arrayCampos[pUsuario].widget);
+    for(var i = 0; i < arrayCampos.length; i++) {
+        if(arrayCampos[i].Id == pID){
+            jcp.activate(arrayCampos[i].widget);
+            break; // encerra o loop quando encontra o item
+        }
+      }
+
 
     //console.log(jcp.activate);
     //console.log(arrayCampos);
@@ -31,14 +38,14 @@ function newUsuario() {
 
     //console.log(x,y,w,h);
 
-    arrayCampos.push({ widget: jcp.newWidget(Jcrop.Rect.create( x, y, w, h)), nome: usuario });
+    arrayCampos.push({ widget: jcp.newWidget(Jcrop.Rect.create( x, y, w, h)), nome: usuario, Id: numUsuario });
     //Jcrop.Rect.create(380, 100, 360, 110)
 
     //var index = arrayCampos.length - 1;
 
     var lista = document.getElementById("lista-pessoas").innerHTML;
 
-    var lista = lista + "<li class = 'list-btns-users' id = 'L-" + numUsuario + "' ><button class = 'lista-usuario' style = 'background-color: rgb(" + GetCorRGB() + ")' onclick= 'ativarPosicao(" + index + ")'>" + usuario + "</button> <button id = 'btn-excluir' onclick= 'removeUsuario(" + index + ")'> X </button><button id = 'btn-editar' onclick= 'alterarUsuario(" + index + ")'> Editar </button></li>";
+    var lista = lista + "<li class = 'list-btns-users' id = 'L-" + numUsuario + "' ><button class = 'lista-usuario' style = 'background-color: rgb(" + GetCorRGB() + ")' onclick= 'ativarPosicao(" + numUsuario + ")'>" + usuario + "</button> <button id = 'btn-excluir' onclick= 'removeUsuario(" + numUsuario + ")'> X </button><button id = 'btn-editar' onclick= 'alterarUsuario(" + numUsuario + ")'> Editar </button></li>";
     
     numUsuario++;
 
@@ -48,19 +55,24 @@ function newUsuario() {
 
 }
 
-function removeUsuario(pIndex) {
+function removeUsuario(pID) {
 
     jcp.setOptions({ canRemove: true });
 
-    var item = document.getElementsByClassName("list-btns-users")[pIndex];
+    var item = document.getElementById("L-" + pID);
 
     console.log(item);
 
     item.remove();
 
-    jcp.removeWidget(arrayCampos[pIndex].widget);
+    for(var i = 0; i < arrayCampos.length; i++) {
+        if(arrayCampos[i].Id == pID){
+            jcp.removeWidget(arrayCampos[i].widget);
+            arrayCampos.splice(i, 1);
+            break; // encerra o loop quando encontra o item
+        }
+    }
 
-    arrayCampos.splice(pIndex, 1);
 
     jcp.setOptions({ canRemove: false });
 
@@ -81,16 +93,37 @@ function GetCorRGB() {
     return lCor;
 }
 
-function alterarUsuario(pIndex) {
+function alterarUsuario(pID) {
 
-    var editUser = prompt("Digite o nome do usuário");
+    var lUsuario = "";
+    var lIndex = -1;
 
-    arrayCampos[pIndex].nome = editUser;
+    for(var i = 0; i < arrayCampos.length; i++) 
+    {
+        if(arrayCampos[i].Id == pID)
+        {
+            lIndex = i;
+            break; 
+        }
+    }
 
-    console.log(arrayCampos);
 
-    user = document.querySelector(".lista-usuario")[pIndex];
+    if(lIndex >= 0){
+      
+        lUsuario = arrayCampos[lIndex].nome;
 
-    //user.innerHTML = "<button class = 'lista-usuario' style = 'background-color: rgb(" + GetCorRGB() + ")' onclick= 'ativarPosicao(" + pIndex + ")'>" + editUser + "</button>"
+        var editUser = prompt(lUsuario);
+    
+        arrayCampos[lIndex].nome = editUser;
+  
+        console.log(arrayCampos);
+
+        var item = document.getElementById("L-" + pID);
+        item.innerText = editUser;
+  
+          
+      }
+
+      //user = document.querySelector(".lista-usuario")[pIndex];
 
 }
