@@ -43,17 +43,7 @@ nav a:hover {
 	cursor: pointer;
 }
 
-.lista-usuario {
-	width: 60px;
-	height: 30px;
-	margin-right: 1px;
-	border-radius: 10px;
-	text-align: center;
-	border: none;
-	cursor: pointer;
-}
-
-#btn-newuser {
+#btn-userOptions {
 	width: 150px;
 	height: 40px;
 	border: 0;
@@ -66,7 +56,7 @@ nav a:hover {
 	background-color: rgb(9, 59, 125);
 }
 
-#btn-newuser:hover {
+#btn-userOptions:hover {
 	width: 160px;
 	height: 50px;
 	background-color: lightseagreen;
@@ -74,14 +64,23 @@ nav a:hover {
 }
 
 .lista-pessoas {
-	padding: 20px;
+	padding: 10px;
 	font-size: 30px;
 	font-weight: bold;
-	display: flex;
+	display: block;
 	align-items: center;
-    justify-content: center; 
 	color: black;
 	cursor: pointer;
+}
+
+.lista-usuario {
+	display: block;
+	content: 300px;
+	padding: 10px;
+}
+
+.checkbox-user {
+	margin-left: 15px;
 }
 
 #btn-excluir {
