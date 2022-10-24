@@ -4,7 +4,7 @@ body {
 }
 
 header {
-	background:#3f3b3b;
+	background:#3988d7;
 	padding: 20px 0;
 }
 
@@ -21,25 +21,12 @@ nav li {
 
 nav a {
 	text-transform: uppercase;
-	color: #e9c0c0;
+	color: #ffffff;
 	font-weight: bold;
 	font-size: 22px;
 	text-decoration: none;
 }
 
 nav a:hover {
-	color: #C78C19;
-	text-decoration: underline;
+	color: #a4a3a1;
 }
-
-
-.btn_market {
-	margin: 10px;
-}
-
-.btn_space {
-	padding: 10px;
-}
-
-
-

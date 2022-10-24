@@ -17,8 +17,6 @@
         <div class="caixa">
             <nav>
                 <ul class="txt-cabecalho"></ul>
-                    <li><a href="main.html">Home</a></li>
-                    <li><a href="upload.html">Upload</a></li>
                     <li><a href="funcoes.html">Funções</a></li>
                 </ul>
             </nav>
@@ -26,8 +24,7 @@
     </header>
 
     <main>
-
-        
+                
         <h1 class="titulo_principal">Assinaturas do Contrato</h1>
 
         <div style="display:flex">
@@ -39,12 +36,16 @@
             </div>    
             <div class="btns-widgets">
                 <div>
-                    <button id="btn-userOptions" onclick="newUsuario()">Adicionar</button>
-                    <button id="btn-userOptions" onclick="editUsuario()">Editar</button>
-                    <button id="btn-userOptions" onclick="delUsuario()">Remover</button>
+                    <button class="btn-userOptions" id="btn-addUser" onclick="newUsuario()">Adicionar</button>
+                    <button class="btn-userOptions" id="btn-editUser" onclick="editUsuario()">Editar</button>
+                    <button class="btn-userOptions" id="btn-delUser" onclick="delUsuario()">Remover</button>
                 </div>
                 <ul class="lista-pessoas" id="lista-pessoas">
                     <!-- <li><button id="btn-newuser" onclick="newUsuario()">Adicionar Usuário</button></li> -->
+                    <!-- <li class="lista-usuario" id="0">
+                        <label for="0" style="border-radius: 5px; background-color: rgb(98, 98, 164);" onclick= "ativarPosicao(0)">Nome do usuário</label>
+                        <input type="checkbox" name= "usuario" class = "checkbox-user" id = "0" value="0">
+                    </li> -->
                 </ul>
             </div>
         </div>

@@ -7,9 +7,9 @@ var arrayCampos = [];
 Jcrop.load('alvo').then(img => {
     jcp = Jcrop.attach(img, { multi: false, canRemove: false });
 
-    const rect = Jcrop.Rect.sizeOf(jcp.el);
+    //arrayCampos[0] = ({ widget: jcp.newWidget(Jcrop.Rect.create(380, 100, 360, 110)), nome: "Nome do usuário", Id: numUsuario });
 
-    jcp.newWidget(rect.scale(.7, .5).center(rect.w, rect.h));
+    jcp.newWidget(Jcrop.Rect.create(380, 100, 360, 110))
 
     jcp.addClass('jcrop-ux-keep-current');
 
@@ -29,7 +29,7 @@ function newUsuario() {
 
     var usuario = prompt("Digite o nome do usuário");
 
-    let x = jcp.active.pos.x, y = jcp.active.pos.y, w = jcp.active.pos.w, h = jcp.active.pos.h;
+    var x = jcp.active.pos.x, y = jcp.active.pos.y, w = jcp.active.pos.w, h = jcp.active.pos.h;
 
     arrayCampos.push({ widget: jcp.newWidget(Jcrop.Rect.create(x, y, w, h)), nome: usuario, Id: numUsuario });
     //Jcrop.Rect.create(380, 100, 360, 110)
@@ -42,13 +42,33 @@ function newUsuario() {
 
     //var lista = lista + "<li class = 'list-btns-users' id = 'L-" + numUsuario + "' ><button class = 'lista-usuario' style = 'background-color: rgb(" + GetCorRGB() + ")' onclick= 'ativarPosicao(" + numUsuario + ")'>" + usuario + "</button> <button id = 'btn-excluir' onclick= 'removeUsuario(" + numUsuario + ")'> X </button><button id = 'btn-editar' onclick= 'alterarUsuario(" + numUsuario + ")'> Editar </button></li>";
 
-    var lista = lista + "<li class = 'lista-usuario' id = 'L-" + numUsuario + "' ><label for= " +usuario+ " >"+usuario+"</label><input type= 'checkbox' class = 'checkbox-user' id = " +numUsuario+ " value="+usuario+"><li/>"
+    var lista = lista + "<li class = 'lista-usuario' id = 'L-" + numUsuario + "' ><label for= " + numUsuario + " style = 'border-radius: 5px; background-color: rgb(" + GetCorRGB() + ");' onclick= 'ativarPosicao(" + numUsuario + ")'>" + usuario + "</label><input type= 'radio' name= 'usuario' class = 'radiobox-user' id = " + numUsuario + " value=" + numUsuario + "><button id = 'btn-excluir' onclick= 'removeUsuario(" + numUsuario + ")'> X </button><button id = 'btn-editar' onclick= 'alterarUsuario(" + numUsuario + ")'> Editar </button><li/>"
 
     numUsuario++;
 
     document.getElementById("lista-pessoas").innerHTML = lista;
 
     //console.log(jcp.active);
+
+}
+
+function delUsuario() {
+
+    const btnDel = document.querySelector('#btn-delUser');
+
+    const radioButtons = document.querySelectorAll('input[name="usuario"]');
+
+    btnDel.addEventListener("onload",() => {
+
+        for (const radioButton of radioButtons) {
+            if (radioButton.checked) {
+
+                removeUsuario();
+
+                break;
+            }
+        }
+    });
 
 }
 
@@ -111,8 +131,9 @@ function alterarUsuario(pID) {
 
         console.log(arrayCampos);
 
-        var item = document.getElementById("L-" + pID);
-        item.innerText = editUser;
+        var item = document.getElementById("L-" + pID).firstChild.lastChild;
+
+        item.nodeValue = editUser;
+
     }
-    //user = document.querySelector(".lista-usuario")[pIndex];
 }

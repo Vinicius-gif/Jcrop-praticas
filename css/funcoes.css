@@ -1,36 +1,3 @@
-body {
-	font-family: 'Montserrat', sans-serif;
-}
-
-header {
-	background: #3f3b3b;
-	padding: 20px 0;
-}
-
-.caixa {
-	position: relative;
-	width: 940px;
-	margin: 0 auto;
-}
-
-nav li {
-	display: inline;
-	margin: 0 0 0 15px;
-}
-
-nav a {
-	text-transform: uppercase;
-	color: #e9c0c0;
-	font-weight: bold;
-	font-size: 22px;
-	text-decoration: none;
-}
-
-nav a:hover {
-	color: #C78C19;
-	text-decoration: underline;
-}
-
 .titulo_principal {
     padding: 20px;
     font-weight: bold;
@@ -43,7 +10,7 @@ nav a:hover {
 	cursor: pointer;
 }
 
-#btn-userOptions {
+.btn-userOptions {
 	width: 150px;
 	height: 40px;
 	border: 0;
@@ -56,7 +23,7 @@ nav a:hover {
 	background-color: rgb(9, 59, 125);
 }
 
-#btn-userOptions:hover {
+.btn-userOptions:hover {
 	width: 160px;
 	height: 50px;
 	background-color: lightseagreen;
@@ -64,13 +31,11 @@ nav a:hover {
 }
 
 .lista-pessoas {
-	padding: 10px;
-	font-size: 30px;
+	padding: 5px;
+	font-size: 22px;
 	font-weight: bold;
 	display: block;
-	align-items: center;
 	color: black;
-	cursor: pointer;
 }
 
 .lista-usuario {
@@ -79,7 +44,7 @@ nav a:hover {
 	padding: 10px;
 }
 
-.checkbox-user {
+.radiobox-user {
 	margin-left: 15px;
 }
 
