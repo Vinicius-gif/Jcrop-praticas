@@ -7,7 +7,6 @@
 
 .btns-widgets {
 	display: inline-block;
-	cursor: pointer;
 }
 
 .btn-userOptions {
@@ -32,8 +31,8 @@
 
 .lista-pessoas {
 	padding: 5px;
-	font-size: 22px;
-	font-weight: bold;
+	font-size: 18px;
+	font-weight: lighter;
 	display: block;
 	color: black;
 }
@@ -42,6 +41,18 @@
 	display: block;
 	content: 300px;
 	padding: 10px;
+}
+
+.label-user {
+	border-radius: 5px;
+	border-color: rgb(35, 32, 32);
+	border: solid 2px;
+	cursor: pointer;
+}
+
+.label-user:hover {
+	font-size: 20px;
+	transition: 0.2s;
 }
 
 .radiobox-user {

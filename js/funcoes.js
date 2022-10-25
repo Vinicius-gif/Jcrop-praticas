@@ -42,7 +42,7 @@ function newUsuario() {
 
     //var lista = lista + "<li class = 'list-btns-users' id = 'L-" + numUsuario + "' ><button class = 'lista-usuario' style = 'background-color: rgb(" + GetCorRGB() + ")' onclick= 'ativarPosicao(" + numUsuario + ")'>" + usuario + "</button> <button id = 'btn-excluir' onclick= 'removeUsuario(" + numUsuario + ")'> X </button><button id = 'btn-editar' onclick= 'alterarUsuario(" + numUsuario + ")'> Editar </button></li>";
 
-    var lista = lista + "<li class = 'lista-usuario' id = 'L-" + numUsuario + "' ><label for= " + numUsuario + " style = 'border-radius: 5px; background-color: rgb(" + GetCorRGB() + ");' onclick= 'ativarPosicao(" + numUsuario + ")'>" + usuario + "</label><input type= 'radio' name= 'usuario' class = 'radiobox-user' id = " + numUsuario + " value=" + numUsuario + "><button id = 'btn-excluir' onclick= 'removeUsuario(" + numUsuario + ")'> X </button><button id = 'btn-editar' onclick= 'alterarUsuario(" + numUsuario + ")'> Editar </button><li/>"
+    var lista = lista + "<li class = 'lista-usuario' id = 'L-" + numUsuario + "' ><label for= " + numUsuario + " class = 'label-user' style ='background-color: rgb(" + GetCorRGB() + ");' onclick= 'ativarPosicao(" + numUsuario + ")'>" + usuario + "</label><input type= 'radio' name= 'usuario' class = 'radiobox-user' value=" + numUsuario + "><li/>"
 
     numUsuario++;
 
@@ -52,25 +52,29 @@ function newUsuario() {
 
 }
 
-function delUsuario() {
+document.getElementById("btn-delUser").onclick = function () {
+    var radios = document.getElementsByName("usuario");
+    for (var i = 0; i < radios.length; i++) {
+        if (radios[i].checked) {
 
-    const btnDel = document.querySelector('#btn-delUser');
+            console.log("Escolheu: " + radios[i].value);
 
-    const radioButtons = document.querySelectorAll('input[name="usuario"]');
-
-    btnDel.addEventListener("onload",() => {
-
-        for (const radioButton of radioButtons) {
-            if (radioButton.checked) {
-
-                removeUsuario();
-
-                break;
-            }
+            removeUsuario(radios[i].value);
         }
-    });
+    }
+};
 
-}
+document.getElementById("btn-editUser").onclick = function() {
+    var radios = document.getElementsByName("usuario");
+    for (var i = 0; i < radios.length; i++) {
+        if (radios[i].checked) {
+            
+            console.log("Escolheu: " + radios[i].value);
+
+            editUsuario(radios[i].value);
+        }
+    }
+};
 
 function removeUsuario(pID) {
 
@@ -109,7 +113,7 @@ function GetCorRGB() {
     return lCor;
 }
 
-function alterarUsuario(pID) {
+function editUsuario(pID) {
 
     var lUsuario = "";
     var lIndex = -1;
