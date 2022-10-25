@@ -46,13 +46,17 @@ function newUsuario() {
 
         //var lista = lista + "<li class = 'list-btns-users' id = 'L-" + numUsuario + "' ><button class = 'lista-usuario' style = 'background-color: rgb(" + GetCorRGB() + ")' onclick= 'ativarPosicao(" + numUsuario + ")'>" + usuario + "</button> <button id = 'btn-excluir' onclick= 'removeUsuario(" + numUsuario + ")'> X </button><button id = 'btn-editar' onclick= 'alterarUsuario(" + numUsuario + ")'> Editar </button></li>";
 
-        var lista = lista + "<li class = 'lista-usuario' id = 'L-" + numUsuario + "' ><label for= " + numUsuario + " class = 'label-user' style ='background-color: rgb(" + GetCorRGB() + ");' onclick= 'ativarPosicao(" + numUsuario + ")'>" + usuario + "</label><input type= 'radio' name= 'usuario' class = 'radiobox-user' value=" + numUsuario + "><li/>"
+        var lista = lista + "<li class = 'lista-usuario' id = 'L-" + numUsuario + "' ><label for= " + numUsuario + " class = 'label-user' style ='background: rgb(" + GetCorRGB() + ");' onclick= 'ativarPosicao(" + numUsuario + ")'>" + usuario + "</label><input type= 'radio' name= 'usuario' class = 'radiobox-user' value=" + numUsuario + "><li/>"
 
-        //console.log(arrayCampos[numUsuario].widget);
+        // var corUsuario = document.getElementsByClassName("label-user")[0];
+        // var cor = corUsuario.style.background;
+        // console.log(cor);
 
-        //corWidget = document.getElementsByClassName("jcrop-widget")[numUsuario];
+        //var corWidget = document.querySelectorAll(".jcrop-widget").item(numUsuario);
 
-        //console.log(corWidget).style.backgroundColor = "blue";
+        //corWidget.style.background = 'red';
+
+        //console.log(corWidget);
 
         numUsuario++;
 
