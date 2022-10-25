@@ -20,7 +20,7 @@ function ativarPosicao(pID) {
     for (var i = 0; i < arrayCampos.length; i++) {
         if (arrayCampos[i].Id == pID) {
             jcp.activate(arrayCampos[i].widget);
-            break; // encerra o loop quando encontra o item
+            break;
         }
     }
 }
@@ -29,26 +29,35 @@ function newUsuario() {
 
     var usuario = prompt("Digite o nome do usuário");
 
-    var x = jcp.active.pos.x, y = jcp.active.pos.y, w = jcp.active.pos.w, h = jcp.active.pos.h;
+    if (usuario == null) {
+        alert("O nome do usuário não pode ser vazio!");
+    }
 
-    arrayCampos.push({ widget: jcp.newWidget(Jcrop.Rect.create(x, y, w, h)), nome: usuario, Id: numUsuario });
-    //Jcrop.Rect.create(380, 100, 360, 110)
+    else {
 
-    //var index = arrayCampos.length - 1;
+        var x = jcp.active.pos.x, y = jcp.active.pos.y, w = jcp.active.pos.w, h = jcp.active.pos.h;
 
-    var lista = document.getElementById("lista-pessoas").innerHTML;
+        arrayCampos.push({ widget: jcp.newWidget(Jcrop.Rect.create(x, y, w, h)), nome: usuario, Id: numUsuario });
+        //Jcrop.Rect.create(380, 100, 360, 110)
 
-    //var lista = lista + "<li class = 'list-btns-users' id = 'L-" + numUsuario + "' ><button class = 'lista-usuario' style = 'background-color: rgb(" + GetCorRGB() + ")' onclick= 'ativarPosicao(" + numUsuario + ")'>" + usuario + "</button> <button id = 'btn-excluir' onclick= 'removeUsuario(" + numUsuario + ")'> X </button><button id = 'btn-editar' onclick= 'alterarUsuario(" + numUsuario + ")'> Editar </button></li>";
+        //var index = arrayCampos.length - 1;
 
-    //var lista = lista + "<li class = 'list-btns-users' id = 'L-" + numUsuario + "' ><button class = 'lista-usuario' style = 'background-color: rgb(" + GetCorRGB() + ")' onclick= 'ativarPosicao(" + numUsuario + ")'>" + usuario + "</button> <button id = 'btn-excluir' onclick= 'removeUsuario(" + numUsuario + ")'> X </button><button id = 'btn-editar' onclick= 'alterarUsuario(" + numUsuario + ")'> Editar </button></li>";
+        var lista = document.getElementById("lista-pessoas").innerHTML;
 
-    var lista = lista + "<li class = 'lista-usuario' id = 'L-" + numUsuario + "' ><label for= " + numUsuario + " class = 'label-user' style ='background-color: rgb(" + GetCorRGB() + ");' onclick= 'ativarPosicao(" + numUsuario + ")'>" + usuario + "</label><input type= 'radio' name= 'usuario' class = 'radiobox-user' value=" + numUsuario + "><li/>"
+        //var lista = lista + "<li class = 'list-btns-users' id = 'L-" + numUsuario + "' ><button class = 'lista-usuario' style = 'background-color: rgb(" + GetCorRGB() + ")' onclick= 'ativarPosicao(" + numUsuario + ")'>" + usuario + "</button> <button id = 'btn-excluir' onclick= 'removeUsuario(" + numUsuario + ")'> X </button><button id = 'btn-editar' onclick= 'alterarUsuario(" + numUsuario + ")'> Editar </button></li>";
 
-    numUsuario++;
+        var lista = lista + "<li class = 'lista-usuario' id = 'L-" + numUsuario + "' ><label for= " + numUsuario + " class = 'label-user' style ='background-color: rgb(" + GetCorRGB() + ");' onclick= 'ativarPosicao(" + numUsuario + ")'>" + usuario + "</label><input type= 'radio' name= 'usuario' class = 'radiobox-user' value=" + numUsuario + "><li/>"
 
-    document.getElementById("lista-pessoas").innerHTML = lista;
+        //console.log(arrayCampos[numUsuario].widget);
 
-    //console.log(jcp.active);
+        //corWidget = document.getElementsByClassName("jcrop-widget")[numUsuario];
+
+        //console.log(corWidget).style.backgroundColor = "blue";
+
+        numUsuario++;
+
+        document.getElementById("lista-pessoas").innerHTML = lista;
+    }
 
 }
 
@@ -64,11 +73,11 @@ document.getElementById("btn-delUser").onclick = function () {
     }
 };
 
-document.getElementById("btn-editUser").onclick = function() {
+document.getElementById("btn-editUser").onclick = function () {
     var radios = document.getElementsByName("usuario");
     for (var i = 0; i < radios.length; i++) {
         if (radios[i].checked) {
-            
+
             console.log("Escolheu: " + radios[i].value);
 
             editUsuario(radios[i].value);
@@ -90,7 +99,7 @@ function removeUsuario(pID) {
         if (arrayCampos[i].Id == pID) {
             jcp.removeWidget(arrayCampos[i].widget);
             arrayCampos.splice(i, 1);
-            break; // encerra o loop quando encontra o item
+            break;
         }
     }
 
@@ -131,13 +140,19 @@ function editUsuario(pID) {
 
         var editUser = prompt(lUsuario);
 
-        arrayCampos[lIndex].nome = editUser;
+        if (editUser == null) {
+            alert("O nome do usuário não pode ser vazio!");
+        }
 
-        console.log(arrayCampos);
+        else {
+            arrayCampos[lIndex].nome = editUser;
 
-        var item = document.getElementById("L-" + pID).firstChild.lastChild;
-
-        item.nodeValue = editUser;
+            console.log(arrayCampos);
+    
+            var item = document.getElementById("L-" + pID).firstChild.lastChild;
+    
+            item.nodeValue = editUser;
+        }
 
     }
 }
