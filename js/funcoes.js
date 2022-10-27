@@ -7,29 +7,7 @@ var arrayCampos = [];
 Jcrop.load('alvo').then(img => {
     jcp = Jcrop.attach(img, { multi: false, canRemove: false });
 
-    arrayCampos[numUsuario] = ({ widget: jcp.newWidget(Jcrop.Rect.create(380, 100, 360, 110)), nome: usuario = "Nome do usuário", Id: numUsuario });
-
-    var lista = document.getElementById("lista-pessoas").innerHTML;
-
-    var lista = lista + "<li class = 'lista-usuario' id = 'L-" + numUsuario + "' ><label for= " + numUsuario + " class = 'label-user' style ='background: blue;' onclick= 'ativarPosicao(" + numUsuario + ")'>" + usuario + "</label><input type= 'radio' name= 'usuario' class = 'radiobox-user' value=" + numUsuario + "><li/>"
-
-    var corCampo = document.querySelectorAll(".jcrop-widget").item(numUsuario);
-
-    corCampo.style.background = 'blue';
-
-    corCampo.style.opacity = 0.6;
-
-    //corWidget.innerText = usuario;
-
-    document.getElementById("lista-pessoas").innerHTML = lista;
-
-    console.log(arrayCampos);
-
-    //console.log(arrayCampos[numUsuario]);
-
-    jcp.addClass('jcrop-ux-keep-current');
-
-    //jcp.newWidget(Jcrop.Rect.create(200, 300, 360, 110))
+    //jcp.addClass('jcrop-ux-keep-current');
 
 });
 
@@ -61,16 +39,14 @@ function newUsuario() {
 
     var usuario = prompt("Digite o nome do usuário");
 
-    if (usuario == null && jcp.active == null && usuario == undefined) {
-        alert("O nome do usuário não pode ser vazio! OU\n Você não selecionou o campo do usuário!");
+    if (usuario == "" || usuario == null || usuario == undefined) {
+        alert("O nome do usuário não pode ser vazio!");
 
-    } else if (usuario != null && jcp.active != null) {
+    }
 
-        numUsuario++;
+    else {
 
-        var x = jcp.active.pos.x, y = jcp.active.pos.y, w = jcp.active.pos.w, h = jcp.active.pos.h;
-
-        arrayCampos.push({ widget: jcp.newWidget(Jcrop.Rect.create(x, y, w, h)), nome: usuario, Id: numUsuario });
+        arrayCampos.push({ widget: jcp.newWidget(Jcrop.Rect.create(380, 100, 360, 110)), nome: usuario, Id: numUsuario });
         //Jcrop.Rect.create(380, 100, 360, 110)
 
         //var index = arrayCampos.length - 1;
@@ -81,21 +57,24 @@ function newUsuario() {
 
         var corDoUsuario = GetCorRGB();
 
-        var lista = lista + "<li class = 'lista-usuario' id = 'L-" + numUsuario + "' ><label for= " + numUsuario + " id= 'label-" + numUsuario + "' class = 'labelUser_' style ='background: rgb(" + corDoUsuario + ");' onclick= 'ativarPosicao(" + numUsuario + ")'>" + usuario + "</label><input type= 'radio' name= 'usuario' class = 'radiobox-user' value=" + numUsuario + "><li/>"
+        var lista = lista + "<li class = 'lista-usuario' id = 'L-" + numUsuario + "' ><label for= " + numUsuario + " id= 'label-" + numUsuario + "' class = 'label-user' style ='background: rgb(" + corDoUsuario + ");' onclick= 'ativarPosicao(" + numUsuario + ")'>" + usuario + "</label><input type= 'radio' name= 'usuario' class = 'radiobox-user' value=" + numUsuario + "><li/>"
 
-        //var corWidget = document.getElementById("labelUser_" + numUsuario);
+        var conteudoWidget = document.querySelectorAll(".jcrop-widget").item(numUsuario);
 
-        var corWidget = document.querySelectorAll(".jcrop-widget").item(numUsuario);
+        var nomeUsuario = document.createTextNode(usuario);
 
-        corWidget.style.background = 'rgb(' + corDoUsuario + ')';
+        conteudoWidget.appendChild(nomeUsuario);
 
-        corWidget.style.opacity = 0.6;
+        conteudoWidget.style.background = 'rgb(' + corDoUsuario + ')';
 
-        //corWidget.innerText = usuario;
+        conteudoWidget.style.opacity = 0.6;
 
         document.getElementById("lista-pessoas").innerHTML = lista;
 
+        numUsuario++;
+
         console.log(arrayCampos);
+
     }
 }
 
@@ -146,13 +125,13 @@ function removeUsuario(pID) {
                 item.remove();
             }
             break;
+
         }
+
+        jcp.setOptions({ canRemove: false });
+
+        console.log(arrayCampos);
     }
-
-    jcp.setOptions({ canRemove: false });
-
-    console.log(arrayCampos);
-
 }
 
 function editUsuario(pID) {
@@ -173,11 +152,8 @@ function editUsuario(pID) {
 
         var editUser = prompt(lUsuario);
 
-        if (editUser == null) {
-            alert("O nome do usuário não pode ser vazio!");
-        }
+        if (editUser != "") {
 
-        else {
             arrayCampos[lIndex].nome = editUser;
 
             console.log(arrayCampos);
@@ -185,7 +161,16 @@ function editUsuario(pID) {
             var item = document.getElementById("L-" + pID).firstChild.lastChild;
 
             item.nodeValue = editUser;
+
+            var conteudoWidget = document.querySelectorAll(".jcrop-widget").item(numUsuario).lastChild.textContent = editUser;
+
+            console.log(conteudoWidget);
         }
 
+        else if (editUser == "") {
+            alert("O nome do usuário não pode ser vazio!");
+        }
+
+        else { }
     }
 }
