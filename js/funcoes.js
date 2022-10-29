@@ -3,11 +3,10 @@ var jcp;
 var numUsuario = 0;
 var arrayCampos = [];
 
-
 Jcrop.load('alvo').then(img => {
     jcp = Jcrop.attach(img, { multi: false, canRemove: false });
 
-    //jcp.addClass('jcrop-ux-keep-current');
+    jcp.addClass('jcrop-ux-keep-current');
 
 });
 
@@ -39,14 +38,11 @@ function newUsuario() {
 
     var usuario = prompt("Digite o nome do usuário");
 
-    if (usuario == "" || usuario == null || usuario == undefined) {
-        alert("O nome do usuário não pode ser vazio!");
+    if (usuario != "" && usuario != null) {
 
-    }
+        var userWidget = jcp.newWidget(Jcrop.Rect.create(380, 100, 360, 110));
 
-    else {
-
-        arrayCampos.push({ widget: jcp.newWidget(Jcrop.Rect.create(380, 100, 360, 110)), nome: usuario, Id: numUsuario });
+        arrayCampos.push({ widget: userWidget, nome: usuario, Id: numUsuario });
         //Jcrop.Rect.create(380, 100, 360, 110)
 
         //var index = arrayCampos.length - 1;
@@ -57,7 +53,9 @@ function newUsuario() {
 
         var corDoUsuario = GetCorRGB();
 
-        var lista = lista + "<li class = 'lista-usuario' id = 'L-" + numUsuario + "' ><label for= " + numUsuario + " id= 'label-" + numUsuario + "' class = 'label-user' style ='background: rgb(" + corDoUsuario + ");' onclick= 'ativarPosicao(" + numUsuario + ")'>" + usuario + "</label><input type= 'radio' name= 'usuario' class = 'radiobox-user' value=" + numUsuario + "><li/>"
+        var lista = lista + "<li class = 'lista-usuario' id = 'L-" + numUsuario + "' ><label for= " + numUsuario + " class = 'label-user' style ='background: rgb(" + corDoUsuario + ");' onclick= 'ativarPosicao(" + numUsuario + ")'>" + usuario + "</label><input type= 'radio' name= 'usuario' class = 'radiobox-user' value=" + numUsuario + "><li/>"
+
+        //var conteudoWidget = document.getElementsByClassName("jcrop-widget")[numUsuario];
 
         var conteudoWidget = document.querySelectorAll(".jcrop-widget").item(numUsuario);
 
@@ -74,7 +72,6 @@ function newUsuario() {
         numUsuario++;
 
         console.log(arrayCampos);
-
     }
 }
 
@@ -86,9 +83,6 @@ document.getElementById("btn-delUser").onclick = function () {
             console.log("Escolheu: " + radios[i].value);
 
             removeUsuario(radios[i].value);
-        }
-        else {
-            //alert("Selecione o usuário que desejas excluir primeiro!");
         }
     }
 }
@@ -107,6 +101,8 @@ document.getElementById("btn-editUser").onclick = function () {
 
 function removeUsuario(pID) {
 
+    console.log(pID);
+
     jcp.setOptions({ canRemove: true });
 
     var item = document.getElementById("L-" + pID);
@@ -117,21 +113,21 @@ function removeUsuario(pID) {
 
         if (arrayCampos[i].Id == pID) {
 
-            let resp = confirm("Deseja exluir o usuário " + arrayCampos[i].nome + "?");
+            var resp = confirm("Deseja exluir o usuário " + arrayCampos[i].nome + "?");
 
-            if (resp == true) {
+            if (resp) {
                 jcp.removeWidget(arrayCampos[i].widget);
                 arrayCampos.splice(i, 1);
                 item.remove();
+                break;
             }
-            break;
-
         }
-
-        jcp.setOptions({ canRemove: false });
-
-        console.log(arrayCampos);
     }
+
+    jcp.setOptions({ canRemove: false });
+
+    console.log(arrayCampos);
+
 }
 
 function editUsuario(pID) {
@@ -152,7 +148,7 @@ function editUsuario(pID) {
 
         var editUser = prompt(lUsuario);
 
-        if (editUser != "") {
+        if (editUser != "" && editUser != null) {
 
             arrayCampos[lIndex].nome = editUser;
 
@@ -162,15 +158,9 @@ function editUsuario(pID) {
 
             item.nodeValue = editUser;
 
-            var conteudoWidget = document.querySelectorAll(".jcrop-widget").item(numUsuario).lastChild.textContent = editUser;
+            var conteudoWidget = document.querySelectorAll(".jcrop-widget").item(lIndex).lastChild.textContent = editUser;
 
             console.log(conteudoWidget);
         }
-
-        else if (editUser == "") {
-            alert("O nome do usuário não pode ser vazio!");
-        }
-
-        else { }
     }
 }

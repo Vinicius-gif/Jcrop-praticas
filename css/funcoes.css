@@ -58,21 +58,3 @@
 .radiobox-user {
 	margin-left: 15px;
 }
-
-#btn-excluir {
-	background-color: red;
-	border: none;
-	border-radius: 3px;
-	color: black;
-	margin-right: 5px;
-	cursor: pointer;
-}
-
-#btn-editar {
-	background-color: rgb(6, 168, 255);
-	border: none;
-	border-radius: 3px;
-	color: black;
-	margin-right: 15px;
-	cursor: pointer;
-}
