@@ -1,9 +1,7 @@
 # Telas
 
-<img src="img-telas/home.png">
+<img src="img-telas/tela1.png"> <br><br>
 
-<img src="img-telas/upload.png">
+<img src="img-telas/tela3.png">
 
-<img src="img-telas/form.png">
 
-<img src="img-telas/classes.png">
