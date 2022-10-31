@@ -1,10 +1,12 @@
 //CROP 1
 var jcp;
 var numUsuario = 0;
+var idWidget = 0;
+var indexW = 0;
 var arrayCampos = [];
 
 Jcrop.load('alvo').then(img => {
-    jcp = Jcrop.attach(img, { multi: false, canRemove: false });
+    jcp = Jcrop.attach(img, { multi: false, canRemove: false, multiMax: 0});
 
     jcp.addClass('jcrop-ux-keep-current');
 
@@ -55,9 +57,11 @@ function newUsuario() {
 
         var lista = lista + "<li class = 'lista-usuario' id = 'L-" + numUsuario + "' ><label for= " + numUsuario + " class = 'label-user' style ='background: rgb(" + corDoUsuario + ");' onclick= 'ativarPosicao(" + numUsuario + ")'>" + usuario + "</label><input type= 'radio' name= 'usuario' class = 'radiobox-user' value=" + numUsuario + "><li/>"
 
-        //var conteudoWidget = document.getElementsByClassName("jcrop-widget")[numUsuario];
+        document.getElementById("lista-pessoas").innerHTML = lista;
 
-        var conteudoWidget = document.querySelectorAll(".jcrop-widget").item(numUsuario);
+        var conteudoWidget = document.getElementsByClassName("jcrop-widget")[numUsuario];
+
+        conteudoWidget.setAttribute("id","W-"+idWidget++);
 
         var nomeUsuario = document.createTextNode(usuario);
 
@@ -67,12 +71,9 @@ function newUsuario() {
 
         conteudoWidget.style.opacity = 0.6;
 
-        document.getElementById("lista-pessoas").innerHTML = lista;
-
         numUsuario++;
-
-        console.log(arrayCampos);
     }
+    console.log(arrayCampos);
 }
 
 document.getElementById("btn-delUser").onclick = function () {
@@ -106,6 +107,9 @@ function removeUsuario(pID) {
     jcp.setOptions({ canRemove: true });
 
     var item = document.getElementById("L-" + pID);
+    //var idDoWidget = document.getElementById("W-" + pID);
+
+    //var conteudoWidget = document.getElementsByClassName("jcrop-widget")[pID];
 
     console.log(item);
 
@@ -119,6 +123,8 @@ function removeUsuario(pID) {
                 jcp.removeWidget(arrayCampos[i].widget);
                 arrayCampos.splice(i, 1);
                 item.remove();
+                //conteudoWidget.remove();
+                //idDoWidget.remove();
                 break;
             }
         }
