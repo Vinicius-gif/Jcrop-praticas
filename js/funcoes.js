@@ -1,8 +1,6 @@
 //CROP 1
 var jcp;
 var numUsuario = 0;
-var idWidget = 0;
-var indexW = 0;
 var arrayCampos = [];
 
 Jcrop.load('alvo').then(img => {
@@ -45,43 +43,32 @@ function newUsuario() {
         var userWidget = jcp.newWidget(Jcrop.Rect.create(380, 100, 360, 110));
 
         arrayCampos.push({ widget: userWidget, nome: usuario, Id: numUsuario });
-        //Jcrop.Rect.create(380, 100, 360, 110)
-
-        //var index = arrayCampos.length - 1;
 
         var lista = document.getElementById("lista-pessoas").innerHTML;
 
-        //var lista = lista + "<li class = 'list-btns-users' id = 'L-" + numUsuario + "' ><button class = 'lista-usuario' style = 'background-color: rgb(" + GetCorRGB() + ")' onclick= 'ativarPosicao(" + numUsuario + ")'>" + usuario + "</button> <button id = 'btn-excluir' onclick= 'removeUsuario(" + numUsuario + ")'> X </button><button id = 'btn-editar' onclick= 'alterarUsuario(" + numUsuario + ")'> Editar </button></li>";
-
         var corDoUsuario = GetCorRGB();
 
-        var lista = lista + "<li class = 'lista-usuario' id = 'L-" + numUsuario + "' ><label for= " + numUsuario + " class = 'label-user' style ='background: rgb(" + corDoUsuario + ");' onclick= 'ativarPosicao(" + numUsuario + ")'>" + usuario + "</label><input type= 'radio' name= 'usuario' class = 'radiobox-user' value=" + numUsuario + "><li/>"
+        var lista = lista + "<li class = 'lista-usuario' id = 'L-" + numUsuario + "' ><label class = 'label-user' style ='background: rgb(" + corDoUsuario + ");' onclick= 'ativarPosicao(" + numUsuario + ")'>" + usuario + "</label><input type= 'radio' name= 'usuario' class = 'radiobox-user' value=" + numUsuario + "><li/>"
 
         document.getElementById("lista-pessoas").innerHTML = lista;
 
-        var conteudoWidget = document.getElementsByClassName("jcrop-widget")[numUsuario];
-
-        conteudoWidget.setAttribute("id","W-"+idWidget++);
-
         var nomeUsuario = document.createTextNode(usuario);
 
-        conteudoWidget.appendChild(nomeUsuario);
+        jcp.active.el.appendChild(nomeUsuario);
 
-        conteudoWidget.style.background = 'rgb(' + corDoUsuario + ')';
+        jcp.active.el.style.background = 'rgb(' + corDoUsuario + ')';
 
-        conteudoWidget.style.opacity = 0.6;
+        jcp.active.el.style.opacity = 0.6;
 
         numUsuario++;
+
     }
-    console.log(arrayCampos);
 }
 
 document.getElementById("btn-delUser").onclick = function () {
     var radios = document.getElementsByName("usuario");
     for (var i = 0; i < radios.length; i++) {
         if (radios[i].checked) {
-
-            console.log("Escolheu: " + radios[i].value);
 
             removeUsuario(radios[i].value);
         }
@@ -93,8 +80,6 @@ document.getElementById("btn-editUser").onclick = function () {
     for (var i = 0; i < radios.length; i++) {
         if (radios[i].checked) {
 
-            console.log("Escolheu: " + radios[i].value);
-
             editUsuario(radios[i].value);
         }
     }
@@ -102,16 +87,9 @@ document.getElementById("btn-editUser").onclick = function () {
 
 function removeUsuario(pID) {
 
-    console.log(pID);
-
     jcp.setOptions({ canRemove: true });
 
     var item = document.getElementById("L-" + pID);
-    //var idDoWidget = document.getElementById("W-" + pID);
-
-    //var conteudoWidget = document.getElementsByClassName("jcrop-widget")[pID];
-
-    console.log(item);
 
     for (var i = 0; i < arrayCampos.length; i++) {
 
@@ -123,17 +101,11 @@ function removeUsuario(pID) {
                 jcp.removeWidget(arrayCampos[i].widget);
                 arrayCampos.splice(i, 1);
                 item.remove();
-                //conteudoWidget.remove();
-                //idDoWidget.remove();
                 break;
             }
         }
     }
-
     jcp.setOptions({ canRemove: false });
-
-    console.log(arrayCampos);
-
 }
 
 function editUsuario(pID) {
@@ -158,15 +130,12 @@ function editUsuario(pID) {
 
             arrayCampos[lIndex].nome = editUser;
 
-            console.log(arrayCampos);
-
             var item = document.getElementById("L-" + pID).firstChild.lastChild;
 
             item.nodeValue = editUser;
 
-            var conteudoWidget = document.querySelectorAll(".jcrop-widget").item(lIndex).lastChild.textContent = editUser;
+            conteudoWidget = document.querySelectorAll(".jcrop-widget").item(lIndex).lastChild.textContent = editUser;
 
-            console.log(conteudoWidget);
         }
     }
 }
