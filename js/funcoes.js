@@ -4,7 +4,7 @@ var numUsuario = 0;
 var arrayCampos = [];
 
 Jcrop.load('alvo').then(img => {
-    jcp = Jcrop.attach(img, { multi: false, canRemove: false, multiMax: 0});
+    jcp = Jcrop.attach(img, { multi: false, canRemove: false, multiMax: 0 });
 
     jcp.addClass('jcrop-ux-keep-current');
 
@@ -95,13 +95,24 @@ function removeUsuario(pID) {
 
         if (arrayCampos[i].Id == pID) {
 
-            var resp = confirm("Deseja exluir o usuário " + arrayCampos[i].nome + "?");
-
-            if (resp) {
-                jcp.removeWidget(arrayCampos[i].widget);
+            if (arrayCampos.length == 1) {
+                jcp.active.el.remove();
                 arrayCampos.splice(i, 1);
                 item.remove();
+                //alert("O documento deve conter ao menos um assinante!")
                 break;
+            }
+
+            else {
+
+                var resp = confirm("Deseja exluir o usuário " + arrayCampos[i].nome + "?");
+
+                if (resp) {
+                    jcp.removeWidget(arrayCampos[i].widget);
+                    arrayCampos.splice(i, 1);
+                    item.remove();
+                    break;
+                }
             }
         }
     }
