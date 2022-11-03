@@ -97,7 +97,8 @@ function removeUsuario(pID) {
 
             if (arrayCampos.length == 1) {
                 jcp.active.el.remove();
-                arrayCampos.splice(i, 1);
+                //jcp.crops = [];
+                //jcp.crops.size = 0;
                 item.remove();
                 //alert("O documento deve conter ao menos um assinante!")
                 break;

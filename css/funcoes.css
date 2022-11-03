@@ -11,6 +11,11 @@
 	padding: 30px 30px 30px 90px;
 }
 
+#alvo {
+	border: solid;
+	border-width: 2px;
+}
+
 .btns-widgets {
 	display: inline-block;
 }
