@@ -36,7 +36,7 @@ function GetCorRGB() {
 
 function newUsuario() {
 
-    var usuario = prompt("Digite o nome do usuário");
+    var usuario = prompt("Digite o nome do assinante");
 
     if (usuario != "" && usuario != null) {
 

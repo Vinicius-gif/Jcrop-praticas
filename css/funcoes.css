@@ -33,6 +33,10 @@
 	background-color: rgb(9, 59, 125);
 }
 
+.fa-user, .fa-pen-to-square, .fa-trash-can{
+	padding-left: 10px;
+}
+
 .btn-userOptions:hover {
 	width: 160px;
 	height: 50px;

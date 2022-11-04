@@ -47,7 +47,12 @@ nav a {
 }
 
 nav a:hover {
-	color: #26263d;
+	font-size: 24px;
+	transition: 0.3s;
+}
+
+.fa-file-signature {
+	padding-left: 7px;
 }
 
 footer {
