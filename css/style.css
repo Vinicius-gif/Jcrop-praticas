@@ -60,8 +60,11 @@ footer {
 	height: 50px;
 }
 
-.titulo_header{
-	font-size: medium;
-	font-weight: bolder;
+.p_footer{
+	color: #ffffff;
+	font-size: 1rem;
+	font-weight: 400;
+	line-height: 1.5;
 	text-align: center;
+	padding-top: 10px;
 }
