@@ -20,14 +20,16 @@ function newUsuario() {
 
         arrayCampos.push({ widget: userWidget, nome: usuario, Id: numUsuario });
 
-        var lista = document.getElementById("lista-pessoas").innerHTML;
-
         var corDoUsuario = GetCorRGB();
 
-        var lista = lista + "<li class = 'lista-usuario' id = 'L-" + numUsuario + "' ><label class = 'label-user' style ='background: rgb(" + corDoUsuario + ");' onclick= 'ativarPosicao(" + numUsuario + ")'>" + usuario + "</label><input type= 'radio' name= 'usuario' class = 'radiobox-user' value=" + numUsuario + "><li/>"
-
-        document.getElementById("lista-pessoas").innerHTML = lista;
-
+        document.getElementById("lista-pessoas").innerHTML += 
+        `      
+        <li class = 'lista-usuario' id = 'L-${numUsuario}' ><i class='fa-regular fa-user'></i>
+        <label class = 'label-user' style ='background: rgb(${corDoUsuario});' 
+        onclick= 'ativarPosicao(${numUsuario})'>${usuario}</label>
+        <input type= 'radio' name= 'usuario' class = 'radiobox-user' value="${numUsuario}"><li/>
+        
+        `
         var nomeUsuario = document.createTextNode(usuario);
 
         jcp.active.el.appendChild(nomeUsuario);
@@ -38,6 +40,8 @@ function newUsuario() {
 
         numUsuario++;
 
+    } else if (usuario == "") {
+        alert("O nome não pode ser vazio!")
     }
 }
 
@@ -71,7 +75,8 @@ document.getElementById("btn-delUser").onclick = function () {
         if (radios[i].checked) {
 
             removeUsuario(radios[i].value);
-        }
+            break;
+        } 
     }
 }
 
@@ -130,12 +135,12 @@ function editUsuario(pID) {
 
             arrayCampos[lIndex].nome = editUser;
 
-            var item = document.getElementById("L-" + pID).firstChild.lastChild;
+            document.getElementById("L-" + pID).childNodes[3].textContent = editUser;
 
-            item.nodeValue = editUser;
+            document.querySelectorAll(".jcrop-widget").item(lIndex).lastChild.textContent = editUser;
 
-            conteudoWidget = document.querySelectorAll(".jcrop-widget").item(lIndex).lastChild.textContent = editUser;
-
+        } else if(editUser == "") {
+            alert("O nome do usuário não pode ser vazio!")
         }
     }
 }
