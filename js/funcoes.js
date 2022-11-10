@@ -22,8 +22,8 @@ function newUsuario() {
 
         var corDoUsuario = GetCorRGB();
 
-        document.getElementById("lista-pessoas").innerHTML += 
-        `      
+        document.getElementById("lista-pessoas").innerHTML +=
+            `      
         <li class = 'lista-usuario' id = 'L-${numUsuario}' ><i class='fa-regular fa-user'></i>
         <label class = 'label-user' style ='background: rgb(${corDoUsuario});' 
         onclick= 'ativarPosicao(${numUsuario})'>${usuario}</label>
@@ -61,22 +61,27 @@ function GetCorRGB() {
 
 function ativarPosicao(pID) {
 
-    for (var i = 0; i < arrayCampos.length; i++) {
-        if (arrayCampos[i].Id == pID) {
-            jcp.activate(arrayCampos[i].widget);
-            break;
-        }
-    }
+    var widgetSelecionado = arrayCampos.find(element => element.Id == pID)
+
+    jcp.activate(widgetSelecionado.widget);
+
+    // for (var i = 0; i < arrayCampos.length; i++) {
+    //     if (arrayCampos[i].Id == pID) {
+    //         jcp.activate(arrayCampos[i].widget);
+    //         break;
+    //     }
+    // }
 }
 
 document.getElementById("btn-delUser").onclick = function () {
-    var radios = document.getElementsByName("usuario");
+    let radios = document.getElementsByName("usuario");
+
     for (var i = 0; i < radios.length; i++) {
         if (radios[i].checked) {
 
             removeUsuario(radios[i].value);
             break;
-        } 
+        }
     }
 }
 
@@ -96,20 +101,30 @@ function removeUsuario(pID) {
 
     var item = document.getElementById("L-" + pID);
 
-    for (var i = 0; i < arrayCampos.length; i++) {
+    var selecionado = arrayCampos.find(element => element.Id == pID);
 
-        if (arrayCampos[i].Id == pID) {
+    var resp = confirm("Deseja exluir o usuário " + selecionado.nome + "?");
 
-            var resp = confirm("Deseja exluir o usuário " + arrayCampos[i].nome + "?");
-
-            if (resp) {
-                jcp.removeWidget(arrayCampos[i].widget);
-                arrayCampos.splice(i, 1);
-                item.remove();
-                break;
-            }
-        }
+    if (resp) {
+        jcp.removeWidget(selecionado.widget);
+        arrayCampos = arrayCampos.filter(element => element != selecionado);
+        item.remove();
     }
+
+    // for (var i = 0; i < arrayCampos.length; i++) {
+
+    //     if (arrayCampos[i].Id == pID) {
+
+    //         var resp = confirm("Deseja exluir o usuário " + arrayCampos[i].nome + "?");
+
+    //         if (resp) {
+    //             jcp.removeWidget(arrayCampos[i].widget);
+    //             arrayCampos.splice(i, 1);
+    //             item.remove();
+    //             break;
+    //         }
+    //     }
+    // }
     jcp.setOptions({ canRemove: false });
 }
 
@@ -139,7 +154,7 @@ function editUsuario(pID) {
 
             document.querySelectorAll(".jcrop-widget").item(lIndex).lastChild.textContent = editUser;
 
-        } else if(editUser == "") {
+        } else if (editUser == "") {
             alert("O nome do usuário não pode ser vazio!")
         }
     }
