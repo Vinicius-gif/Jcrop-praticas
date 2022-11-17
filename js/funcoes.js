@@ -61,7 +61,7 @@ function GetCorRGB() {
 
 function ativarPosicao(pID) {
 
-    var widgetSelecionado = arrayCampos.find(element => element.Id == pID)
+    var widgetSelecionado = arrayCampos.find(element => element.Id == pID);
 
     jcp.activate(widgetSelecionado.widget);
 

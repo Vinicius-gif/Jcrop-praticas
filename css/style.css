@@ -4,60 +4,42 @@ body {
 	
 }
 
-header {
+.cabeçalho {
 	background:#5a9fe4;
-	padding: 20px 0;
-}
-
-.elementos-cabecalho {
 	display: flex;
-	justify-content: flex-start;
+	justify-content: space-between;
+	align-items: center;
 }
 
-.links-paginas {
+.container {
 	display: flex;
-	justify-content: flex-start;
-	padding-top: 10px;
-	padding-left: 40px;
+	align-items: center;
 }
 
-#logotipo {
+.container_logo {
 	width: 300px;
 	height: 35px;
+	padding-right: 50px;
+	cursor: pointer;
 }
 
-.caixa {
-	position: relative;
-	width: 940px;
-	margin: 0 auto;
-	margin-left: 10px;
-}
-
-nav li {
-	display: inline;
-	margin: 0 0 0 15px;
-}
-
-nav a {
-	text-transform: uppercase;
+.container_titulos {
+	padding: 1em;
 	color: #ffffff;
 	font-weight: bold;
 	font-size: 22px;
-	text-decoration: underline;
+	text-decoration: none;
 }
 
-nav a:hover {
-	font-size: 24px;
+.container_titulos:hover {
+	color: #bfc3c6;
 	transition: 0.3s;
-}
-
-.fa-file-signature {
-	padding-left: 7px;
 }
 
 footer {
 	background-color: #5a9fe4;
-	height: 50px;
+	height: 60px;
+	text-align: center;
 }
 
 .p_footer{
@@ -66,5 +48,5 @@ footer {
 	font-weight: 400;
 	line-height: 1.5;
 	text-align: center;
-	padding-top: 10px;
+	padding-top: 15px;
 }
