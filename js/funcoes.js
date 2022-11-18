@@ -32,11 +32,13 @@ function newUsuario() {
         `
         var nomeUsuario = document.createTextNode(usuario);
 
-        jcp.active.el.appendChild(nomeUsuario);
+        var nomeWidget = document.createElement('p');
+
+        nomeWidget.appendChild(nomeUsuario);
+
+        jcp.active.el.appendChild(nomeWidget);
 
         jcp.active.el.style.background = 'rgb(' + corDoUsuario + ')';
-
-        jcp.active.el.style.opacity = 0.6;
 
         numUsuario++;
 
@@ -64,13 +66,6 @@ function ativarPosicao(pID) {
     var widgetSelecionado = arrayCampos.find(element => element.Id == pID);
 
     jcp.activate(widgetSelecionado.widget);
-
-    // for (var i = 0; i < arrayCampos.length; i++) {
-    //     if (arrayCampos[i].Id == pID) {
-    //         jcp.activate(arrayCampos[i].widget);
-    //         break;
-    //     }
-    // }
 }
 
 document.getElementById("btn-delUser").onclick = function () {
@@ -111,20 +106,6 @@ function removeUsuario(pID) {
         item.remove();
     }
 
-    // for (var i = 0; i < arrayCampos.length; i++) {
-
-    //     if (arrayCampos[i].Id == pID) {
-
-    //         var resp = confirm("Deseja exluir o usuário " + arrayCampos[i].nome + "?");
-
-    //         if (resp) {
-    //             jcp.removeWidget(arrayCampos[i].widget);
-    //             arrayCampos.splice(i, 1);
-    //             item.remove();
-    //             break;
-    //         }
-    //     }
-    // }
     jcp.setOptions({ canRemove: false });
 }
 
