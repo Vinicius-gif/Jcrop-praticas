@@ -23,13 +23,11 @@ function newUsuario() {
         var corDoUsuario = GetCorRGB();
 
         document.getElementById("lista-pessoas").innerHTML +=
-            `      
-        <li class = 'lista-usuario' id = 'L-${numUsuario}' ><i class='fa-regular fa-user'></i>
+        ` <li class = 'lista-usuario' id = 'L-${numUsuario}' ><i class='fa-regular fa-user'></i>
         <label class = 'label-user' style ='background: rgb(${corDoUsuario});' 
         onclick= 'ativarPosicao(${numUsuario})'>${usuario}</label>
-        <input type= 'radio' name= 'usuario' class = 'radiobox-user' value="${numUsuario}"><li/>
+        <input type= 'radio' name= 'usuario' class = 'radiobox-user' value="${numUsuario}"><li/> `
         
-        `
         var nomeUsuario = document.createTextNode(usuario);
 
         var nomeWidget = document.createElement('p');

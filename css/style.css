@@ -1,9 +1,11 @@
 body {
 	font-family: 'Montserrat', sans-serif;
 	background-color: #edededcc;
+	font-size: 16px;
 }
 
 .cabeçalho {
+	width: 100%;
 	background:#5a9fe4;
 	display: flex;
 	justify-content: space-between;
@@ -42,6 +44,7 @@ footer {
 }
 
 .p_footer{
+	margin-top: 10px;
 	color: #ffffff;
 	font-size: 1rem;
 	font-weight: 400;

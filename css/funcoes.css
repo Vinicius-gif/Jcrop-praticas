@@ -11,19 +11,24 @@
 }
 
 .jcp-instancia {
-	padding: 10px 30px 30px 90px;
+	padding: 0px 30px 30px 90px;
 }
 
 #alvo {
 	border: solid;
 	border-width: 2px;
+	box-shadow: 1px 2px 9px #595d61;
 }
 
 .btns-widgets {
 	display: inline-block;
+	border: 2px solid #666b6f;
+	height: 500px;
+	box-shadow: 1px 2px 9px #595d61;
 }
 
 .btn-userOptions {
+	margin-top: 10px;
 	width: 150px;
 	height: 40px;
 	border: none;
@@ -35,28 +40,35 @@
 	margin-right: 7px;
 	background-color: rgb(9, 59, 125);
 	transition: 0.4s;
+	box-shadow: 0px 15px 10px -15px rgb(9, 59, 125);
 }
 
 .fa-user, .fa-pen-to-square, .fa-trash-can{
 	padding-left: 10px;
 }
 
+#btn-addUser {
+	background-color: rgb(37, 161, 183);
+}
+
+#btn-editUser {
+	background-color: rgb(75, 182, 95);
+}
+
+#btn-delUser {
+	background-color: rgb(202, 21, 21);
+}
+
 #btn-addUser:hover {
-	background-color: lightseagreen;
-	width: 153px;
-	height: 43px;
+	background-color: rgb(37, 186, 212);
 }
 
 #btn-editUser:hover {
-	background-color: rgb(75, 182, 95);
-	width: 153px;
-	height: 43px;
+	background-color: rgb(87, 223, 112);
 }
 
 #btn-delUser:hover {
-	background-color: rgb(202, 21, 21);
-	width: 153px;
-	height: 43px;
+	background-color: rgb(243, 40, 40);
 }
 
 .lista-pessoas {
@@ -91,4 +103,3 @@
 	width: 20px;
 	height: 20px;
 }
-
